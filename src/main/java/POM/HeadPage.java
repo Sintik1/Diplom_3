@@ -8,25 +8,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class HeadPage {
+
     private WebDriver driver;
+    private By buttonConstructor = By.xpath(".//p[contains(text(),'Конструктор')]");//локатор кнопки Конструктор в хедере сайта
     private By buttonPersonalArea = By.xpath(".//p[contains(text(),'Личный Кабинет')]");//Локатор кнопки Личный кабинет в хедере
     private By buttonSingIn = By.xpath(".//button[contains(text(),'Войти в аккаунт')]");//Локатор кнопки Войти в аккаунт
-    private By buttonBun = By.xpath(".//span[contains(text(),'Булки')]");//Локатор кнопки Булки в конструкторе
-    private By getNameSectionBunInConsctructor=By.xpath(".//h2[contains(text(),'Булки')]");//Локатор названия секции Булки
-    private By buttonFillings = By.xpath(".//span[contains(text(),'Начинки')]");//Локатор кнопки Начинки в конструкторе
-    private By nameSectionFillingsInConsctructor= By.xpath(".//h2[contains(text(),'Начинки')]");//Локатор названия секции Начинки
-    private By buttonSause = By.xpath(".//span[contains(text(),'Соусы')]");//Локатор кнопки Соусы в конструкторе
-    private By nameSectionSauseInConstructor=By.xpath(".//h2[contains(text(),'Соусы')]");//Локатор названия секции Соусы
+    private By buttonBun = By.xpath(".//div[@style]/div[1]");//Локатор кнопки Булки в конструкторе
+    private By buttonFillings = By.xpath(".//div[@style]/div[3]");//Локатор кнопки Начинки в конструкторе
+    private By buttonSause = By.xpath(".//div[@style]/div[2]");//Локатор кнопки Соусы в конструкторе
     private By listConstructor = By.className("BurgerIngredients_ingredients__menuContainer__Xu3Mo");
     private By headPage = By.xpath(".//main[@class='App_componentContainer__2JC2W']");//Локатор главной страницы
-
 
     public HeadPage(WebDriver driver) {
         this.driver = driver;
     }
 
-
-  @Step("Клик по кнопке Личный кабинет")
+    @Step("Клик по кнопке Личный кабинет")
     public void clickButtonPersonalArea() {
         driver.findElement(buttonPersonalArea).click();
     }
@@ -50,21 +47,6 @@ public class HeadPage {
         return driver.findElement(headPage).isDisplayed();
     }
 
-    @Step("Получение названия секции Булки")
-    public String getNameSectionBunConstructor() {
-        return driver.findElement(getNameSectionBunInConsctructor).getText();
-    }
-
-    @Step("Получение названия секции Начинки")
-    public String getNameSectionFillingsConstructor() {
-        return driver.findElement(nameSectionFillingsInConsctructor).getText();
-    }
-
-    @Step("Получение названия секции Соусы")
-    public String getNameSectionSauseConstructor() {
-        return driver.findElement(nameSectionSauseInConstructor).getText();
-    }
-
     @Step("Клик по кнопке Булки")
     public void clickButtonBun() {
         driver.findElement(buttonBun).click();
@@ -79,4 +61,26 @@ public class HeadPage {
     public void clickButtonSause() {
         driver.findElement(buttonSause).click();
     }
+
+    @Step("Клик по кнопке Конструктор в хедере сайта")
+    public void clickButtonConstructor() {
+        driver.findElement(buttonConstructor).click();
+    }
+
+    @Step("Получить атрибут класса Булок")
+    public String getAtributBuns() {
+        return driver.findElement(buttonBun).getAttribute("class");
+    }
+
+    @Step("Получить атрибут класса Соусы")
+    public String getAtributSause() {
+        return driver.findElement(buttonSause).getAttribute("class");
+    }
+
+    @Step("Получить атрибут класса Начинки")
+    public String getAtributFillings() {
+        return driver.findElement(buttonFillings).getAttribute("class");
+    }
 }
+
+
